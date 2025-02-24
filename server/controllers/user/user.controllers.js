@@ -8,7 +8,6 @@ export const getHackathons = async (req, res) => {
       .populate('organizer', 'name email')
       .sort({ createdAt: -1 });
 
-    console.log(hackathons);
     return res.json({
       success: true,
       hackathons,
