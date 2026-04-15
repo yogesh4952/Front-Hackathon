@@ -1,13 +1,12 @@
 import { FaXTwitter } from 'react-icons/fa6';
 import { IoLogoGithub } from 'react-icons/io5';
 import { useNavigate } from 'react-router';
-import { useUser, useClerk } from '@clerk/clerk-react';
-
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 const HackathonListCard = ({ hackathon }) => {
   const navigate = useNavigate();
-  const { user } = useUser();
-  const { openSignIn } = useClerk();
+  const { isLoggedIn } = useContext(AppContext);
 
   return (
     <div className='border border-gray-700 bg-gray-800 rounded-lg shadow-lg p-6 transition-transform transform hover:shadow-xl'>
@@ -22,11 +21,11 @@ const HackathonListCard = ({ hackathon }) => {
 
         {/* Social Links */}
         <div className='flex gap-4 mt-4 sm:mt-0'>
-          <div className='w-10 h-10 rounded-full flex items-center justify-center bg-gray-600 hover:bg-purple-100 cursor-pointer'>
+          <div className='w-10 h-10 rounded-full flex items-center justify-center bg-gray-600 hover:bg-purple-100 cursor-pointer transition-colors'>
             <FaXTwitter className='text-purple-500 text-xl' />
           </div>
 
-          <div className='w-10 h-10 rounded-full flex items-center justify-center bg-gray-600 hover:bg-purple-100 cursor-pointer'>
+          <div className='w-10 h-10 rounded-full flex items-center justify-center bg-gray-600 hover:bg-purple-100 cursor-pointer transition-colors'>
             <IoLogoGithub className='text-purple-500 text-xl' />
           </div>
         </div>
@@ -71,14 +70,13 @@ const HackathonListCard = ({ hackathon }) => {
 
           <button
             onClick={() => {
-              if (!user) {
-                openSignIn();
+              if (!isLoggedIn) {
+                navigate('/login');
               } else {
                 navigate(`/contact`);
               }
             }}
-            className={`w-full sm:w-auto bg-gradient-to-r from-purple-400 to-purple-500 text-white py-2 rounded-lg text-lg font-semibold hover:scale-105 transition-all cursor-pointer px-4 ${hackathon.status === 'closed' ? 'hidden' : ''} ${!user ? 'cursor-not-allowed opacity-50' : ''}`
-            }
+            className={`w-full sm:w-auto bg-gradient-to-r from-purple-400 to-purple-500 text-white py-2 rounded-lg text-lg font-semibold hover:scale-105 transition-all cursor-pointer px-4 ${hackathon.status === 'closed' ? 'hidden' : ''}`}
           >
             {hackathon.status === 'open'
               ? 'Join Hackathon'

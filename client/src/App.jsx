@@ -10,6 +10,8 @@ import Footer from "./components/Footer";
 import AboutUs from "./pages/About";
 import Projects from "./pages/Projects";
 import SignUpForm from "./pages/SignUpForm";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import { ToastContainer } from "react-toastify";
 import Button from "./components/Button";
 import HackathonDetails from "./pages/HackathonDetails";
@@ -24,6 +26,8 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/hackathon" element={<Hackathon />} />
         <Route path="/hackathon/:id" element={<HackathonDetails />} />
         <Route path="/about" element={<AboutUs />} />

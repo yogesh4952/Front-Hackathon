@@ -7,7 +7,7 @@
   --primary-font: 'Outfit', sans-serif;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
@@ -19,10 +19,10 @@ button{
   background: var(--_c) 50% 0 /12px 12px, var(--_c) 50% 100%/12px 12px,
     var(--_c) 100% 50%/12px 12px, var(--_c) 0 50%/12px 12px,
     var(--_c) 50% 50%/12px 12px,
-    conic-gradient(from 90deg at 4px 4px, #0000 90deg, currentColor 0) -4px -4px /
-      calc(50% + 2px) calc(50% + 2px);
+    conic-gradient(from 90deg at 4px 4px, #0000 90deg, currentColor 0) -4px -4px / calc(50% + 2px) calc(50% + 2px);
   animation: l8 1s infinite linear;
 }
+
 @keyframes l8 {
   to {
     transform: rotate(0.5turn);
@@ -37,4 +37,34 @@ button{
   width: 0;
   height: 0;
   display: none;
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
 }

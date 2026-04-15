@@ -7,6 +7,44 @@ import Like from '../components/Like';
 import DisLike from '../components/DisLike';
 import Loader from '../components/Loader';
 
+const DUMMY_PROJECTS = [
+  {
+    _id: 'proj1',
+    name: 'AI Chatbot for Farmers',
+    description: 'A multilingual chatbot that helps farmers diagnose crop diseases and suggests treatments.',
+    technologies: ['React', 'Python', 'Flask', 'TensorFlow'],
+    liveUrl: 'https://example.com/demo1'
+  },
+  {
+    _id: 'proj2',
+    name: 'Eco-Friendly Delivery Optimizer',
+    description: 'Streamlining delivery routes to minimize carbon footprint using genetic algorithms.',
+    technologies: ['Node.js', 'Leaflet', 'Express', 'PostgreSQL'],
+    liveUrl: 'https://example.com/demo2'
+  },
+  {
+    _id: 'proj3',
+    name: 'Blockchain Voting System',
+    description: 'A secure, transparent, and decentralized voting platform for local community elections.',
+    technologies: ['Solidity', 'React', 'Hardhat', 'Ethers.js'],
+    liveUrl: 'https://example.com/demo3'
+  },
+  {
+    _id: 'proj4',
+    name: 'Health Tracker App',
+    description: 'Personalized wellness tracking with integrated wearable device support and AI health tips.',
+    technologies: ['Flutter', 'Firebase', 'Dart'],
+    liveUrl: 'https://example.com/demo4'
+  },
+  {
+    _id: 'proj5',
+    name: 'Cyber Security Dashboard',
+    description: 'Real-time monitoring of network threats with visual alerts and automated reporting.',
+    technologies: ['React', 'D3.js', 'Node.js', 'Socket.io'],
+    liveUrl: 'https://example.com/demo5'
+  }
+];
+
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const {
@@ -25,20 +63,13 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get(
-          `${BACKEND_URL}/api/user/hackathon/projects`
-        );
-
-        if (data.success) {
-          setProjects(data.projects);
-          setLoading(false);
-        } else {
-          toast.error('Failed to fetch projects');
-          setLoading(false);
-        }
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setProjects(DUMMY_PROJECTS);
       } catch (error) {
         console.error('Error fetching projects', error);
         toast.error('Failed to fetch projects');
+      } finally {
         setLoading(false);
       }
     };
@@ -48,25 +79,20 @@ const Projects = () => {
 
   const handleLike = async (id, value) => {
     try {
-      const { data } = await axios.post(
-        `${BACKEND_URL}/api/user/hackathon/vote/${id}`,
-        { value }
-      );
-
-      if (data && value === 'like') {
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      if (value === 'like') {
         toast.success('Project liked');
         setIsLikes('like');
-      } else if (data && value === 'dislike') {
+      } else if (value === 'dislike') {
         toast.success('Project disliked');
         setIsDislikes('dislike');
-      } else {
-        toast.error(`Failed to ${value} project`);
       }
     } catch (error) {
       toast.error(`Failed to ${value} project`);
     }
   };
-
   return (
     <>
       {loading ? (

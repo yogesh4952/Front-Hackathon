@@ -1,19 +1,27 @@
-import { useEffect } from 'react';
-import { useUser } from '@clerk/clerk-react';
+import { useEffect, useContext } from 'react';
 import { Navigate } from 'react-router';
 import { toast } from 'react-toastify';
+import { AppContext } from '../context/AppContext';
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useUser();
+  const { isLoggedIn, loading } = useContext(AppContext);
 
   useEffect(() => {
-    if (!user) {
-      toast.error('You need to login to view projects');
+    if (!loading && !isLoggedIn) {
+      toast.error('You need to login to access this page');
     }
-  }, [user]);
+  }, [isLoggedIn, loading]);
 
-  if (!user) {
-    return <Navigate to='/' />;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+      </div>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return <Navigate to='/login' />;
   }
 
   return children;

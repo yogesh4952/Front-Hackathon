@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-   <div>
-    <h1>Here are the configuration of readme file</h1>
-   </div> 
-   <div>
-    PORT = 5000
-    SECRET_STRING = jfakmf
-    EMAIL =yogeshshah2063@gmail.com
-    PASSWORD = 123456
-    DB_URL = mongodb+srv://admin:admin@cluster0.ygcln.mongodb.net/
-   </div>
-</body>
-</html>
+# Hackathon Portal Project
+
+This is a MERN stack hackathon management system.
+
+## Setup Instructions
+1. Install dependencies for both client and server:
+   - `cd client && npm install`
+   - `cd server && npm install`
+2. Configure `.env` files:
+   - Server `.env` should contain `PORT`, `DB_URL`, `SECRET_STRING`, `EMAIL`, and `PASSWORD`.
+3. Run the application:
+   - Server: `npm run start` (from server folder)
+   - Client: `npm run dev` (from client folder)
+
+> [!NOTE]
+> Sensitive credentials have been moved to the `.env` file for security.
